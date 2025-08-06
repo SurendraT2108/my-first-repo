@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter new task">
+        <button id="addTaskBtn">Add Task</button>
+        <ul id="tasksList"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 300px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#tasksList {
+    list-style: none;
+    padding: 0;
+}
+
+.task {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.task button {
+    float: right;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    const tasksList = document.getElementById('tasksList');
+    const taskText = taskInput.value.trim();
+    if (taskText) {
+        const newTask = document.createElement('li');
+        newTask.className = 'task';
+        newTask.innerHTML = ${taskText} <button onclick="deleteTask(this)">Delete</button>;
+        tasksList.appendChild(newTask);
+        taskInput.value = '';
+    }
+}
+
+function deleteTask(button) {
+    const task = button.parentNode;
+    task.parentNode.removeChild(task);
+}
