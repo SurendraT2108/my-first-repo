@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+int isPalindrome(char* s, int start, int end) {
+    while (start < end) {
+        if (s[start] != s[end]) {
+            return 0; // Not a palindrome
+        }
+        start++;
+        end--;
+    }
+    return 1; // Is a palindrome
+}
+
+int palindromeIndex(char* s) {
+    int len = strlen(s);
+    int start = 0;
+    int end = len - 1;
+
+    while (start < end) {
+        if (s[start] != s[end]) {
+            // Check by removing either character
+            if (isPalindrome(s, start + 1, end)) {
+                return start; // Remove s[start]
+            } else if (isPalindrome(s, start, end - 1)) {
+                return end; // Remove s[end]
+            } else {
+                return -1; // Neither removal leads to a palindrome
+            }
+        }
+        start++;
+        end--;
+    }
+    
+    return -1; // It's already a palindrome
+}
+
+int main() {
+    char s[] = "abca";
+    int index = palindromeIndex(s);
+    printf("Palindrome index: %d\n", index); // Output should be 1 or 3
+
+    return 0;
+}
